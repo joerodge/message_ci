@@ -34,8 +34,7 @@ def setup_database(url):
     connection.commit()
 
 # We run the two functions above
-POSTGRES_URL = get_database_url()
-setup_database(POSTGRES_URL)
+
 
 app = Flask(__name__)
 
@@ -58,7 +57,6 @@ def get_messages():
 
 # These two methods generate HTML lists and forms
 def format_messages(messages):
-    print('>>>>>', messages)
     esc_messages = []
     for message in messages:
         # Removed escape() because of error
@@ -86,6 +84,9 @@ if __name__ == '__main__':
     # We also run the server differently depending on the environment.
     # In production we don't want the fancy error messages — users won't know
     # what to do with them. So no `debug=True`
+    global POSTGRES_URL
+    POSTGRES_URL = get_database_url()
+    setup_database(POSTGRES_URL)
     if os.environ.get("APP_ENV") == "PRODUCTION":
         app.run(port=5000, host='0.0.0.0')
     else:

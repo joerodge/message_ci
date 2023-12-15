@@ -1,2 +1,10 @@
+from web.app import format_messages
+
 def test_stuff():
-    pass
+    assert format_messages([
+        ('hello',),
+        ('hello2',),
+    ]) == [
+        'hello',
+        'hello2',
+    ]
