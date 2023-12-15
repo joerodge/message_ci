@@ -61,6 +61,7 @@ def format_messages(messages):
     print('>>>>>', messages)
     esc_messages = []
     for message in messages:
+        # Removed escape() because of error
         escaped_message = message[0]
         esc_messages.append(escaped_message)
     return esc_messages
